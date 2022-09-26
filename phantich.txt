@@ -1,0 +1,121 @@
+Xây dựng website bán hàng
+
+
+Phân tích thiết kế database
+* Bảng user
+1) Bảng role
+    - id: int -> khóa chính
+    - name: string(varchar) - 15 -> 20 ký tự
+2) Bảng User
+    - id: int -> khóa chính tự tăng
+    - frist_name: string -> 45-50 ký tự
+    - last_name: string -> 45-50 ký tự
+    - email: string -> 100 ký tự
+    - phone: string -> 15 ký tự
+    - address: string -> 150 ký tự
+    - password: string ->md5(mã hóa) -> 32 ký tự -> chính xác
+    - role_id -> int -> khóa ngoại -> role(id)
+    - created_at: datetime
+    - updated_at: datetime
+    - deleted: int
+3) Bảng danh mục (Categories)
+    - id: int -> khóa chính tự tăng
+    - name: string -> 100 ký tự
+4) Bảng thương hiệu (Brands)
+    - id: int -> khóa chính tự tăng
+    - name: string -> 100 ký tự
+5) Bảng Sản phẩm (product)
+    - id: int -> khóa chính tự tăng
+    - title: string -> 300 ký tự
+    - category_id: int -> khóa ngoại - > category (id)
+    - brand_id: int -> khóa ngoại -> brand (id)
+    - price: int
+    - color: string -> 50 ký tự
+    - image: string -> 500 ký tự
+    - description: longtext
+    - size: int
+    - dimensions: longtext
+    - created_at: datetime -> ngày tạo
+    - updated_at: datetime -> ngày cập nhật
+    - deleted: int
+6) Bảng quản lý galery
+    - id: int -> khóa chính tự tăng
+    - product_id -> int -> khóa ngoại product(id)
+    - image -> string -> 500 ký tự
+7) Đơn hàng
+    - id: int -> khóa chính tự
+    - name: string -> 100 ký tự
+    - email: string -> 150 ký tự
+    - phone: string -> 20 ký tự
+    - address: string -> 150 ký tự
+    - note: string (varchar) -> 100 ký tự
+    - order_date: datetime -> thời điểm đặt hàng
+    - danh sách sản phẩm:
+        - sp1 * số luong * giá tại thời điểm mua
+        - sp2 * số lượng * giá tại thời điểm mua
+    7.1) bảng order
+        - id: int -> khóa chính tự
+        - user_id: int -> khóa ngoại user -> user(id)
+        - frist_name varchar
+        - last_name varchar
+        - email: string -> 150 ký tự
+        - phone: string -> 20 ký tự
+        - address: string -> 150 ký tự
+        - note: string (varchar) -> 100 ký tự
+        - order_date: datetime -> thời điểm đặt hàng
+        - status: int -> (trạng thái đơn hàng: đã mua, đã thanh toán, duyệt, chờ duyêt,...)
+        - total_money: int -> tổng tiền đơn hàng
+    7.2) bảng chi tiết order
+        - id: int -> khóa chính tư tăng
+        - order_id: -> int -> khóa ngoại -> order(id)
+        - product_id: -> int -> khóa ngoại -> product(id)
+        - order_code: string -> mã đơn hàng
+        - price: int
+        - num: int -> số lượng sản phẩm order
+        - total: int -> tổng tiền (price * num)
+        - total_money: int -> tổng hóa đơn
+        - code: varchar -> mã khuyến mãi
+8) Bảng contact
+    - id: int -> khóa chính tự Tăng
+    - last_name: string -> 50 ký tự
+    - email: string 50 ký tự
+9) Tạo database -> database.
+10) Quan hệ
+    Bảng brands.php quan hệ 1 nhiều với product
+        public function product()
+        {
+            return $this->hasMany(Product::class,'brand_id','id');
+            //return $this->hasMany(Product::class,'khóa ngoại của product','khóa chính');
+        }
+    Bảng category.php quan hệ 1 nhiều với product
+        public function product()
+        {
+            return $this->hasMany(Product::class,'brand_id','id');
+        }
+    Bảng role.php quan hệ 1 nhiều user
+        public function user()
+         {
+            return $this->hasMany(Users::class,'role_id','id');
+         }
+    Bảng users.php qua nhệ 1 nhiều với order
+    public function order()
+            {
+                return $this->hasMany(Order::class,'user_id','id');
+            }
+    Bảng order.php quan hệ 1 nhiều với order details
+    public function orderDetail()
+            {
+                return $this->hasMany(OrderDetails::class,'order_id','id');
+            }
+    Bảng product.php quan hệ 1 nhiều với order detail
+    public function oderDetail()
+                {
+                    return $this->hasMany(OrderDetails::class,'product_id','id');
+                }
+    Bảng product.php quan hệ 1 nhiều với galery
+    public function galery()
+                {
+                    return $this->hasMany(Galery::class,'product_id','id');
+                }
+
+
