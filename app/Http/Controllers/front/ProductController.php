@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    //
+    public function show($id)
+    {
+        return view('front.shop.show');
+    }
 }

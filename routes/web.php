@@ -1,6 +1,7 @@
 <?php
 
     use App\Http\Controllers\front\HomeController;
+    use App\Http\Controllers\front\ProductController;
     use App\Models\Brands;
     use App\Models\Category;
     use App\Models\Role;
@@ -20,3 +21,4 @@
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/shop/product/{id}', [ProductController::class, 'show']);
