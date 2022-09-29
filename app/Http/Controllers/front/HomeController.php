@@ -14,7 +14,6 @@ class HomeController extends Controller
         $product = Product::where('status', 1)->get();
         $productNew = Product::where('new', 0)->get();
         $productDiscout = Product::where('discout', 1)->get();
-        //
         //dd($product);
         return view('front.index', compact('product', 'productNew', 'productDiscout'));
     }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <base href="{{ asset('/') }}">
     <meta charset="utf-8">
     <title>@yield('title') | Shop Điện Máy Hào</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,10 +39,6 @@
             <div class="span6">Xin chào!<strong> Hào</strong></div>
             <div class="span6">
                 <div class="pull-right">
-{{--                    <a href="product_summary.html"><span class="">Fr</span></a>--}}
-{{--                    <a href="product_summary.html"><span class="">Es</span></a>--}}
-{{--                    <span class="btn btn-mini">En</span>--}}
-{{--                    <a href="product_summary.html"><span>&pound;</span></a>--}}
                     <span class="btn btn-mini">15.500</span>
                     <a href="product_summary.html"><span class="">đ</span></a>
                     <a href="product_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 3 ] Giỏ hàng của bạn </span> </a>

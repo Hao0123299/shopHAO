@@ -1,5 +1,6 @@
 <?php
 
+    use App\Http\Controllers\admin\AdminController;
     use App\Http\Controllers\front\HomeController;
     use App\Http\Controllers\front\ProductController;
     use App\Models\Brands;
@@ -20,5 +21,10 @@
 |
 */
 
+//front
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/trang-chu', [HomeController::class, 'index']);
 Route::get('/shop/product/{id}', [ProductController::class, 'show']);
+
+//admin
+Route::get('/quan-tri', [AdminController::class, 'index']);

@@ -1,5 +1,8 @@
 @extends('front.layout.master');
 @section('body');
+@section('sidebar');
+    @include('front.layout.sidebar');
+@endsection
 @section('title', 'Trang chủ');
 
 <div id="carouselBlk">
@@ -23,66 +26,9 @@
     <div class="container">
         <div class="row">
             <!-- Sidebar ================================================== -->
-            <div id="sidebar" class="span3">
-                <div class="well well-small"><a id="myCart" href="product_summary.html"><img src="front/img/ico-cart.png" alt="cart">3 Sản phẩm  <span class="badge badge-warning pull-right">15.500đ</span></a></div>
-                <ul id="sideManu" class="nav nav-tabs nav-stacked">
-                    <li class="subMenu"><a> Điện thoại </a>
-                        <ul style="display:none">
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Clothing (45)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Shoes (8)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Hand Bags (5)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Men's Clothings  (45)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Men's Shoes (6)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Kids Clothing (5)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Kids Shoes (3)</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <br/>
-                <div class="thumbnail">
-                    <img src="front/img/products/panasonic.jpg" alt="Bootshop panasonoc New camera"/>
-                    <div class="caption">
-                        <h5>Panasonic</h5>
-                        <h4 style="text-align:center"><a class="btn" href="product_details.html"> Xem chi tiết<i class="icon-zoom-in"></i></a> <a class="btn" href="#">Thêm hàng vào <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">22.200đ</a></h4>
-                    </div>
-                </div><br/>
-
-                <div class="thumbnail">
-                    <img src="front/img/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
-                    <div class="caption">
-                        <h5>Phương thức thanh toán</h5>
-                    </div>
-                </div>
-            </div>
+            @yield('sidebar');
             <!-- Sidebar end=============================================== -->
             <div class="span9">
-{{--                <div class="well well-small">--}}
-{{--                    <h4>Sản phẩm nổi bật <small class="pull-right">200+ sản phẩm khác</small></h4>--}}
-{{--                    <div class="row-fluid">--}}
-{{--                        <div id="featured" class="carousel slide">--}}
-{{--                            <div class="carousel-inner">--}}
-{{--                                <div class="item active">--}}
-{{--                                    <ul class="thumbnails">--}}
-{{--                                        @foreach($product as $product)--}}
-{{--                                        <li class="span3">--}}
-{{--                                            <div class="thumbnail">--}}
-{{--                                                <i class="tag"></i>--}}
-{{--                                                <a href="product_details.html"><img src="front/img/products/b3.jpg" alt=""></a>--}}
-{{--                                                <div class="caption">--}}
-{{--                                                    <h5>{{$product->title}}</h5>--}}
-{{--                                                    <h4><a class="btn" href="product_details.html">Xem</a> <span class="pull-right">{{$product->price}}</span></h4>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </li>--}}
-{{--                                        @endforeach--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>--}}
-{{--                            <a class="right carousel-control" href="#featured" data-slide="next">›</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
                 <h4>Sản phẩm khuyến mãi </h4>
                 <ul class="thumbnails">
                     @foreach($productDiscout as $productDiscout)
